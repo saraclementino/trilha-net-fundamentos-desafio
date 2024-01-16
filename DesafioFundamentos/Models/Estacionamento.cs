@@ -1,5 +1,3 @@
-using Microsoft.Win32.SafeHandles;
-
 namespace DesafioFundamentos.Models
 {
     public class Estacionamento
@@ -16,19 +14,23 @@ namespace DesafioFundamentos.Models
 
         public void AdicionarVeiculo()
         {
-          
             Console.WriteLine("Digite a placa do veículo para estacionar: ");
             string placa = Console.ReadLine();
             veiculos.Add(placa);
-         
+            Console.WriteLine($"Veículo {placa} estacionado com sucesso.");
         }
 
         public void RemoverVeiculo()
         {
             Console.WriteLine("Digite a placa do veículo para remover:");
-                 
-            string placa = "";
-            placa = Console.ReadLine();
+            string placa = Console.ReadLine();
+
+            //Verifica se a placa é nula ou um espaço em branco
+            if(string.IsNullOrWhiteSpace(placa))
+            {
+                Console.WriteLine("Opção inválida");
+                return;
+            }
 
             // Verifica se o veículo existe
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
@@ -58,9 +60,9 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Os veículos estacionados são:");
                 
-                foreach (string placa in veiculos)
+                foreach (string veiculo in veiculos)
                 {
-                    Console.WriteLine(placa);
+                    Console.WriteLine(veiculo);
                 }
             }
             else
